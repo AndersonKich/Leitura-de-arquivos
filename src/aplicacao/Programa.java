@@ -1,14 +1,16 @@
 package aplicacao;
 
-import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Programa {
 
 	public static void main(String[] args) {
 
-		File file = new File("C:\\texto.txt ");// Localização do arquivo
+		//Primeira maneira de ler um arquivo
+		
+		/*File file = new File("C:\\texto.txt ");// Localização do arquivo
 		Scanner teclado = null;
 
 		try {// Try para tratamento de exceções
@@ -21,8 +23,32 @@ public class Programa {
 
 			System.out.println("Erro: "+e.getMessage());
 		}finally {//Para encerrar o Scanner
+			if(teclado != null) {
 			teclado.close();
+			}
+		}*/
+		//==========================================================================================================================
+		
+		String path = "C:\\texto.txt ";//Localização do arquivo
+		
+		try (BufferedReader br = new BufferedReader(new FileReader(path))){
+			String line = br.readLine();
+			while(line != null) {
+				System.out.println(line);
+				line = br.readLine();
+			}
 		}
+		catch(IOException e) {
+			System.out.println("Erro! "+e.getMessage());
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 
 	}
 
